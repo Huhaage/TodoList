@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1>">
+	<title>List of your Task</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="panel pabel-primary">
+			<div class="panel-heading">Liste des Tâches</div>
+			<div class="panel-body">
+				<table class="table">
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Date To Do</th>
+						<th>Category</th>
+					</tr>
+					<tr th:each="t:${pageTask}">
+						<th th:text="${t.name}"></th>
+						<th th:text="${t.description}"></th>
+						<th th:text="${t.dateToDO}"></th>
+						<th th:text="${t.category}"></th>
+					</tr>
+				</table>
+                <ul class ="nav nav-pills">
+                    <li th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
+                        <a th:href="@{/index(page=${status.index},keyword=${keyword})}" th:text="${status.index}"></a>
+                    </li>
+                </ul>
+			</div>
+		</div>
+</body>
+
+</html>
